@@ -15,7 +15,7 @@ public class StartScreen extends AppCompatActivity {
 
     ImageButton nachatbutton;
     ImageButton settingsbutton;
-//    Dialog dialog;
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,28 +23,30 @@ public class StartScreen extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         nachatbutton = findViewById(R.id.start);
         settingsbutton = findViewById(R.id.settings);
-//        dialog = new Dialog(StartScreen.this);
+        dialog = new Dialog(StartScreen.this);
 
-        nachatbutton.setOnClickListener(v -> {
-            Intent intent = new Intent(StartScreen.this, MainActivity.class);
-            startActivity(intent);
+        nachatbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartScreen.this, MainActivity.class);
+                startActivity(intent);
+            }
         });
         
-//        settingsbutton.setOnClickListener(v -> {
-//            showsettmenu();
-//        });
+        settingsbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showsettmenu();
+            }
+        });
     }
 
-//    private void showsettmenu() {
-//        dialog.setContentView(R.layout.activity_settings_menu);
-//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//
-//        ImageButton savebutt = findViewById(R.id.settsave);
-//
-//        savebutt.setOnClickListener(v -> {
-//            dialog.setContentView(R.layout.activity_main);
-//        });
-//    }
+    private void showsettmenu() {
+        dialog.setContentView(R.layout.activity_settings_menu);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
+    }
 
 
 }
