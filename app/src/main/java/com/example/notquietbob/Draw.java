@@ -13,6 +13,7 @@ public class Draw extends SurfaceView implements SurfaceHolder.Callback {
         super(context);
         getHolder().addCallback(this);
     }
+    //.
 
     private DrawThread drawThread;
 

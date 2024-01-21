@@ -15,6 +15,7 @@ public class DrawThread extends Thread{
     public void requestStop(){
         running = false;
     }
+    //.
 
     @Override
     public void run() {
