@@ -13,7 +13,6 @@ public class Draw extends SurfaceView implements SurfaceHolder.Callback {
         super(context);
         getHolder().addCallback(this);
     }
-    //.
 
     private DrawThread drawThread;
 
@@ -30,6 +29,15 @@ public class Draw extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
-
+        drawThread.requestStop();
+        boolean retry = true;
+        while (retry){
+            try {
+                drawThread.join();
+                retry = false;
+            }catch (InterruptedException e){
+                //...
+            }
+        }
     }
 }

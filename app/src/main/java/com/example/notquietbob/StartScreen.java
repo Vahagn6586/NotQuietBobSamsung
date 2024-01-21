@@ -8,43 +8,39 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
         import android.view.View;
-        import android.widget.ImageButton;
+import android.view.WindowManager;
+import android.widget.ImageButton;
 
 
 public class StartScreen extends AppCompatActivity {
 
-    ImageButton nachatbutton;
-    ImageButton settingsbutton;
-    Dialog dialog;
+    private ImageButton startButton, settingsButton, saveButton;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        nachatbutton = findViewById(R.id.start);
-        settingsbutton = findViewById(R.id.settings);
+        setContentView(R.layout.startscreen);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        startButton = findViewById(R.id.start);
+        settingsButton = findViewById(R.id.settings);
         dialog = new Dialog(StartScreen.this);
 
-        nachatbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StartScreen.this, MainActivity.class);
-                startActivity(intent);
-            }
+        startButton.setOnClickListener(v -> {
+            Intent intent = new Intent(StartScreen.this, MainActivity.class);
+            startActivity(intent);
         });
         
-        settingsbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showsettmenu();
-            }
-        });
+        settingsButton.setOnClickListener(v -> showSettMenu());
     }
 
-    private void showsettmenu() {
+    private void showSettMenu() {
         dialog.setContentView(R.layout.activity_settings_menu);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
+
+        saveButton = dialog.findViewById(R.id.settsave);
+        saveButton.setOnClickListener(v -> dialog.hide());
 
     }
 
